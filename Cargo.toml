@@ -1,7 +1,8 @@
 [package]
 name = "pong_game"
 version = "0.1.0"
-edition = "2024"
+edition = "2025"
+authors = ["Daniel Gray <danielquiz1@gmail.com>"]
 
 [dependencies]
 piston_window = "0.120.0"
