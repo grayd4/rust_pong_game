@@ -98,16 +98,19 @@ impl Game {
     fn update_ball(&mut self, delta_time: f64) {
         let (next_x, next_y) = self.ball.get_next_location(delta_time);
 
-        self.game_over = false;
         if next_x > self.width as f64 || next_x < 0.0 {
             // Horizontal wall hit
             // Calculate score
             // Respawn
             self.game_over = true;
-        } else {
-            self.ball.set_velocity(100.0, 0.0);
-            self.ball.set_position(6.0, 6.0 + MARGIN_TOP);
-            self.score += 1;
+            if next_x > self.player.get_position_x() + 1_f64 {
+                // GAME OVER
+                self.game_over = true;
+            } else {
+                self.ball.set_velocity(100.0, 0.0);
+                self.ball.set_position(6.0, 6.0 + MARGIN_TOP);
+                self.score += 1;
+            }
         }
 
         if self.game_over {
@@ -120,6 +123,7 @@ impl Game {
             self.ball.flip_velocity_y();
         }
 
+        // Collision Detection
         // Player collision
         if next_x.floor() >= (self.player.get_position_x() - 1.0)
             && next_y >= self.player.get_position_y()
@@ -132,9 +136,9 @@ impl Game {
         }
 
         // AI collision
-        if next_x.ceil() >= (self.enemy.get_position_x() + 1.0)
+        if next_x.ceil() <= (self.enemy.get_position_x() + 1.0)
             && next_y >= self.enemy.get_position_y()
-            && next_y <= self.enemy.get_position_y() + self.player.get_size() as f64
+            && next_y <= self.enemy.get_position_y() + self.enemy.get_size() as f64
         {
             let paddle_center = self.enemy.get_position_y() + (self.enemy.get_size() / 2) as f64;
             let d = paddle_center as f64 - next_y;
