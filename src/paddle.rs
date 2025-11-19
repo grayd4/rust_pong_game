@@ -53,5 +53,17 @@ impl Paddle {
         }
     }
 
+    pub fn get_position_y(&self) -> f64 {
+        self.y
+    }
+
+    pub fn get_position_x(&self) -> f64 {
+        self.x
+    }
+
+    pub fn get_size(&self) -> i32 {
+        self.size
+    }
+
 
 }

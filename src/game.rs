@@ -1,6 +1,6 @@
 use crate::ball::Ball;
 use crate::draw::{draw_rectangle, draw_text};
-use crate::padd;e::{Direction, Paddle};
+use crate::paddle::{Direction, Paddle};
 use piston_window::{types::Color, Context, G2d, Glyphs, Key};
 
 const BORDER_COLOR: Color = [1.0, 1.0, 1.0, 1.0];
@@ -29,7 +29,7 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new{width: i32, height: i32} -> Self {
+    pub fn new(width: i32, height: i32) -> Self {
         Self {
             player: Paddle::new(width as f64 - 3.0, MARGIN_TOP + 5.0, 5),
             enemy: Paddle::new(3.0, MARGIN_TOP + 9.0, 5),
@@ -178,7 +178,7 @@ impl Game {
         }
         let min_y = MARGIN_TOP;
         let max_y = self.height as f64;
-        self.enemy.slide(dir, min_x, min_y);
+        self.enemy.slide(dir, min_y, max_y);
     }
 
     fn restart(&mut self) {

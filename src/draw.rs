@@ -20,11 +20,11 @@ pub fn draw_block(color: Color, x: f64, y: f64, con: &Context, g: &mut G2d) {
 }
 
 pub fn draw_rectangle(
-    coloe: Color,
+    color: Color,
     x: f64,
     y: f64,
     width: i32,
-    height: i32,
+    _height: i32,   // Not used currently
     con: &Context,
     g: &mut G2d,
 ) {
@@ -39,7 +39,7 @@ pub fn draw_rectangle(
     );
 }
 
-pub fn draw_text(textL &str, position: f64, com: &Context, g: &mut G2d, cache: &mut Glyphs) {
+pub fn draw_text(text: &str, position: f64, con: &Context, g: &mut G2d, cache: &mut Glyphs) {
     let transform = con.transform.trans(position * BLOCK_SIZE, 3.0 * BLOCK_SIZE);
     text::Text::new_color(FONT_COLOR, 20)
         .draw(text, cache, &con.draw_state, transform, g)

@@ -1,4 +1,4 @@
-use crate::draw_block;
+use crate::draw::draw_block;
 use piston_window::{types::Color, Context, G2d};
 
 const BALL_COLOR: Color = [1.0, 1.0, 1.0, 1.0];
@@ -33,11 +33,11 @@ impl Ball {
     }
 
     pub fn flip_velocity_y(&mut self) {
-        self.vy *= -1;
+        self.vy *= -1.0;
     }
 
     pub fn flip_velocity_x(&mut self) {
-        self.vx *= -1;
+        self.vx *= -1.0;
     }
 
     pub fn increase_y(&mut self, factor: f64) {

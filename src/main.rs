@@ -31,8 +31,8 @@ fn main() {
     let assets = find_folder::Search::ParentsThenKids(3, 3).for_folder("assets").unwrap();
     let mut glyphs = window.load_font(assets.join("Freedom-10eM.ttf")).unwrap();
 
-    let mut game = GAme::new(width, height);
-    while let (Some(event) = window.next() {
+    let mut game = Game::new(width, height);
+    while let Some(event) = window.next() {
         if let Some(Button::Keyboard(key)) = event.press_args() {
             game.key_pressed(key);
         }
@@ -46,10 +46,10 @@ fn main() {
             clear(BACK_COLOR, g);
             game.draw(&c, g, &mut glyphs);
             glyphs.factory.encoder.flush(device);
-        })
+        });
 
         event.update(|arg| {
             game.update(arg.dt);
-        })
-    })
+        });
+    }
 }
