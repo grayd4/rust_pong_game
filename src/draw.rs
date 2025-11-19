@@ -24,7 +24,7 @@ pub fn draw_rectangle(
     x: f64,
     y: f64,
     width: i32,
-    _height: i32,   // Not used currently
+    height: i32,
     con: &Context,
     g: &mut G2d,
 ) {
@@ -33,7 +33,7 @@ pub fn draw_rectangle(
 
     rectangle(
         color,
-        [x, y, BLOCK_SIZE * (width as f64), BLOCK_SIZE * (width as f64),],
+        [x, y, BLOCK_SIZE * (width as f64), BLOCK_SIZE * (height as f64),],
         con.transform,
         g,
     );
