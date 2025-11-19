@@ -98,7 +98,7 @@ impl Game {
     fn update_ball(&mut self, delta_time: f64) {
         let (next_x, next_y) = self.ball.get_next_location(delta_time);
 
-        self.game_over = true;  // TODO I think this may be wrong?
+        self.game_over = false;
         if next_x > self.width as f64 || next_x < 0.0 {
             // Horizontal wall hit
             // Calculate score
