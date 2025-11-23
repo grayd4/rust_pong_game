@@ -36,7 +36,7 @@ impl Game {
             waiting_time: 0.0,
             ai_response_time: 0.01,
             ai_update_time: 0.0,
-            ball: Ball::new(6.0, MARGIN_TOP + 4.0, 100.0, 100.0),
+            ball: Ball::new(6.0, MARGIN_TOP + 4.0, 100.0, 0.0),
             width,
             height,
             game_over: false,
@@ -174,12 +174,13 @@ impl Game {
 
         let mut dir: Option<Direction> = None;
         if self.ball.get_velocity_x() < 0.0 {
-            if next_y< self.enemy.get_position_y() {
+            if next_y < self.enemy.get_position_y() {
                 dir = Some(Direction::Up);
             } else if next_y > self.enemy.get_position_y() + self.enemy.get_size() as f64 {
                 dir = Some(Direction::Down);
             }
         }
+
         let min_y = MARGIN_TOP;
         let max_y = self.height as f64;
         self.enemy.slide(dir, min_y, max_y);
@@ -191,5 +192,4 @@ impl Game {
         self.ball.set_position(6.0, (self.height / 2) as f64);
         self.game_over = false;
     }
-
 }
